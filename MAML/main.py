@@ -18,7 +18,7 @@ def parse_args():
     parser.add_argument('--savei', dest='save_step', default=5000, type=int)
     parser.add_argument('--pr', dest='pretrained', default=False, type=bool)
     # parser.add_argument('--data', dest='dataset_dir', default='../miniImagenet')
-    parser.add_argument('--data', dest='dataset_dir', default='../../../data/npy')
+    parser.add_argument('--data', dest='dataset_dir', default='../../data/npy')
     parser.add_argument('--model', dest='model_dir', default='models')
     parser.add_argument('--dset', dest='dataset_name', default='miniImagenet')
     parser.add_argument('--name', dest='model_name', default='mamlnet')
