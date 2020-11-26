@@ -4,8 +4,8 @@ import argparse
 import time
 import os
 import pdb
-from .lib.episode_generator import EpisodeGenerator
-from .lib.networks import MAMLNet
+from MAML.lib.episode_generator import EpisodeGenerator
+from MAML.lib.networks import MAMLNet
 
 def parse_args():
     parser = argparse.ArgumentParser(description='normalized protonet')
