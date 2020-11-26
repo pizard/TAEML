@@ -4,8 +4,8 @@ import argparse
 import time
 import os
 import pdb
-from MAML.lib.episode_generator import EpisodeGenerator
-from MAML.lib.networks import MAMLNet
+from .lib.episode_generator import EpisodeGenerator
+from .lib.networks import MAMLNet
 
 def parse_args():
     parser = argparse.ArgumentParser(description='normalized protonet')
@@ -80,7 +80,7 @@ if __name__=='__main__':
     nway = args.nway
     kshot = args.kshot
     qsize = args.qsize 
-    
+
     if args.train:
         mamlnet = MAMLNet(args.model_name, nway, kshot, qsize, 
             args.meta_batch_size,
