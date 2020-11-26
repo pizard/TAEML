@@ -4,7 +4,7 @@ import pickle
 import cv2
 from tqdm import tqdm
 import pdb
-from class_split import splits
+from .class_split import splits
 
 def read_and_save(path):
     output_root = '../datasets'
@@ -36,8 +36,7 @@ def read_and_save(path):
             for i in range(len(sp_str)):
                 out_data.append(images[fine_label==i])
             out_path = os.path.join(output_root, dsettype)
-            out_text = os.path.join(out_path,
-                    'tiered_full.npy')
+            out_text = os.path.join(out_path, 'tiered_full.npy')
             np.save(out_text, np.array(out_data))
             print ('saved in {}'.format(out_text))
             

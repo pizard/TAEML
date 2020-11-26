@@ -85,7 +85,7 @@ tar -xvf tiered-imagenet.tar
 cd ../../
 
 
-cd dataset-serializer
+cd datasetSerializer
 
 # generate datasets
 python read_datasets.py

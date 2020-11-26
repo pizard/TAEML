@@ -4,24 +4,24 @@ try:
     import cPickle as pickle
 except:
     import pickle
-import voc2012
-import mnist
-import cifar10_cifar100
-import caltech101_caltech256_cub200_2011_awa2
-import omniglot
-import miniImagenet
-import tieredImagenet
+from datasetsSerializer import voc2012
+from datasetsSerializer import mnist
+from datasetsSerializer import cifar10_cifar100
+from datasetsSerializer import caltech101_caltech256_cub200_2011_awa2
+from datasetsSerializer import omniglot
+from datasetsSerializer import miniImagenet
+from datasetsSerializer import tieredImagenet
 
-PATH_RAW = '../raw/'
-PATH_PKL = '../pkl/'
+PATH_RAW = '../../../data/'
+PATH_PKL = '../../../data/pkl/'
 
 def read_datasets(str_dataset):
     print(str_dataset)
     if str_dataset == 'mnist':
         is_rgb = False
 
-        labels_images_train = mnist.read('training', PATH_RAW + str_dataset)
-        labels_images_test = mnist.read('testing', PATH_RAW + str_dataset)
+        labels_images_train = mnist.read('training', PATH_RAW)
+        labels_images_test = mnist.read('testing', PATH_RAW)
         labels_train, images_train = zip(*labels_images_train)
         labels_test, images_test = zip(*labels_images_test)
         images_all = 255 - np.concatenate([images_train, images_test], axis=0)
@@ -42,7 +42,7 @@ def read_datasets(str_dataset):
     elif str_dataset == 'cifar10':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'cifar-10-batches-py')
+        path_data = os.path.join(PATH_RAW, 'cifar-10-batches-py')
         list_str_data_train = [
             'data_batch_1',
             'data_batch_2',
@@ -73,7 +73,7 @@ def read_datasets(str_dataset):
     elif str_dataset == 'cifar100':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'cifar-100-python')
+        path_data = os.path.join(PATH_RAW, 'cifar-100-python')
         str_data_train = 'train'
         str_data_test = 'test'
 
@@ -85,20 +85,20 @@ def read_datasets(str_dataset):
     elif str_dataset == 'caltech101':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, '101_ObjectCategories')
+        path_data = os.path.join(PATH_RAW, '101_ObjectCategories')
         images_all, labels_all = caltech101_caltech256_cub200_2011_awa2.read(path_data)
 
     elif str_dataset == 'caltech256':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, '256_ObjectCategories')
+        path_data = os.path.join(PATH_RAW, '256_ObjectCategories')
         images_all, labels_all = caltech101_caltech256_cub200_2011_awa2.read(path_data)
 
     elif str_dataset == 'voc2012':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'VOCdevkit/VOC2012/JPEGImages')
-        path_classes = os.path.join(PATH_RAW + str_dataset, 'VOCdevkit/VOC2012/ImageSets/Main')
+        path_data = os.path.join(PATH_RAW, 'VOCdevkit/VOC2012/JPEGImages')
+        path_classes = os.path.join(PATH_RAW, 'VOCdevkit/VOC2012/ImageSets/Main')
         images_train, labels_train, images_test, labels_test = voc2012.read(path_data, path_classes)
         images_all = np.concatenate([images_train, images_test], axis=0) 
         labels_all = np.concatenate([labels_train, labels_test], axis=0)
@@ -106,16 +106,16 @@ def read_datasets(str_dataset):
     elif str_dataset == 'cub200_2011':
         is_rgb = True
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'CUB_200_2011/images')
+        path_data = os.path.join(PATH_RAW, 'CUB_200_2011/images')
         images_all, labels_all = caltech101_caltech256_cub200_2011_awa2.read(path_data)
 
     elif str_dataset == 'omniglot':
         is_rgb = False
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'images_background')
+        path_data = os.path.join(PATH_RAW, 'omniglot/processed/images_background')
         images_train, labels_train = omniglot.read(path_data)
 
-        path_data = os.path.join(PATH_RAW + str_dataset, 'images_evaluation')
+        path_data = os.path.join(PATH_RAW, 'omniglot/processed/images_evaluation')
         images_test, labels_test = omniglot.read(path_data)
         images_all = np.concatenate([images_train, images_test], axis=0) 
         labels_all = np.concatenate([labels_train, labels_test], axis=0)
@@ -123,7 +123,7 @@ def read_datasets(str_dataset):
     elif str_dataset == 'awa2':
         is_rgb = True
         
-        path_data = os.path.join(PATH_RAW + str_dataset, 'Animals_with_Attributes2/JPEGImages')
+        path_data = os.path.join(PATH_RAW, 'Animals_with_Attributes2/JPEGImages')
         images_all, labels_all = caltech101_caltech256_cub200_2011_awa2.read(path_data)
 
 
@@ -150,19 +150,19 @@ def read_datasets(str_dataset):
 
     dict_all['data'] = images_all
     dict_all['labels'] = labels_all
-    pickle.dump(dict_all, open('../pkl/{}.pkl'.format(str_dataset), 'wb'))
+    pickle.dump(dict_all, open(PATH_PKL + '{}.pkl'.format(str_dataset), 'wb'))
 
 if __name__ == '__main__':
     if not os.path.isdir(PATH_PKL):
         os.makedirs(PATH_PKL)
-#    read_datasets('mnist')
-#    read_datasets('cifar10')
-#    read_datasets('cifar100')
-#    read_datasets('caltech101')
-#    read_datasets('caltech256')
-#    read_datasets('cub200_2011')
-#    read_datasets('awa2')
-#    read_datasets('omniglot')
-#    read_datasets('voc2012') 
-#    read_datasets('miniImagenet')
+    # read_datasets('awa2')
+    # read_datasets('caltech101')
+    # read_datasets('caltech256')
+    # read_datasets('cifar10')
+    # read_datasets('cifar100')
+    # read_datasets('cub200_2011')
+    # read_datasets('miniImagenet')
+    # read_datasets('mnist')
+    # read_datasets('omniglot')
+    # read_datasets('voc2012')
     read_datasets('tieredImagenet')

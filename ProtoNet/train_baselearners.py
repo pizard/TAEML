@@ -138,4 +138,5 @@ if __name__=='__main__':
                 print ('saved at : {}'.format(out_loc))
                 saver.save(sess, out_loc)
     else: # if test only
-        validate(test_net, test_gen)
+        pass
+        # validate(test_net, test_gen)

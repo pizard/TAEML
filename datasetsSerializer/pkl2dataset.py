@@ -11,7 +11,7 @@ TRAIN_DATASET = ['awa2', 'cifar100', 'omniglot', 'voc2012', 'caltech256']
 TEST_DATASET = ['mnist', 'cub200_2011', 'cifar10', 'caltech101', 'miniImagenet'] 
 VALIDATION_DATASET = ['awa2', 'cifar100', 'omniglot', 'caltech256']
 
-pkl_root = '../pkl'
+pkl_root = '../../../data/pkl/'
 dataset_list = os.listdir(pkl_root)
 out_root = '../datasets'
 if not os.path.exists(out_root):
@@ -60,7 +60,8 @@ for pp, dsets in enumerate([TRAIN_DATASET, TEST_DATASET]):
             # train 80% val 20%
             out_name_train = os.path.join(out_train, name + '.npy')
             out_name_val = os.path.join(out_val, name + '.npy')
-            split_class = int(class_num * 0.8)
+            # split_class = int(class_num * 0.8)
+            split_class = int(class_num)
             print ('full_class: {} / split_class: {}'.format(\
                     class_num, split_class))
             np.save(out_name_train, class_data[:split_class])

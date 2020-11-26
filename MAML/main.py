@@ -4,8 +4,8 @@ import argparse
 import time
 import os
 import pdb
-from lib.episode_generator import EpisodeGenerator
-from lib.networks import MAMLNet
+from MAML.lib.episode_generator import EpisodeGenerator
+from MAML.lib.networks import MAMLNet
 
 def parse_args():
     parser = argparse.ArgumentParser(description='normalized protonet')
@@ -14,10 +14,11 @@ def parse_args():
     parser.add_argument('--qs', dest='qsize', default=15, type=int)
     parser.add_argument('--nw', dest='nway', default=5, type=int)
     parser.add_argument('--ks', dest='kshot', default=1, type=int)
-    parser.add_argument('--showi', dest='show_step', default=100, type=int)
+    parser.add_argument('--showi', dest='show_step', default=1, type=int)
     parser.add_argument('--savei', dest='save_step', default=5000, type=int)
     parser.add_argument('--pr', dest='pretrained', default=False, type=bool)
-    parser.add_argument('--data', dest='dataset_dir', default='../miniImagenet')
+    # parser.add_argument('--data', dest='dataset_dir', default='../miniImagenet')
+    parser.add_argument('--data', dest='dataset_dir', default='../../../data/npy')
     parser.add_argument('--model', dest='model_dir', default='models')
     parser.add_argument('--dset', dest='dataset_name', default='miniImagenet')
     parser.add_argument('--name', dest='model_name', default='mamlnet')

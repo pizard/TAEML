@@ -33,7 +33,7 @@ class Network(object):
 class MAMLNet(Network):
     def __init__(self, name, nway, kshot, qsize, mbsize, norm=False, reuse=False, 
             inner_loop_iter=5, stop_grad=True, isTr=True):
-        self.name = name
+        self.name = name # model name
         self.nway = nway
         self.kshot = kshot
         self.qsize = qsize
@@ -62,7 +62,6 @@ class MAMLNet(Network):
                 'lossb': None,
                 'accuracy': None}
 
-            
         with tf.variable_scope(self.name, reuse=reuse):
             self._build_network(isTr, reuse=reuse)
 
@@ -152,6 +151,8 @@ class MAMLNet(Network):
 #        self.outputs['accuracy'] = [tf_acc(mp, ip['qy'][mi]) \
 #                for mi, mp in enumerate(meta_predbs[-1])]
 
+
+    # conv * 5 + fc
     def construct_weights(self):
         weights = {}
         f32 = tf.float32
@@ -194,10 +195,10 @@ class MAMLNet(Network):
                     reuse, scope+'{}'.format(i))
                     #weights['beta{}'.format(i)], weights['gamma{}'.format(i)], 
         dim = 1
-        for s in x.get_shape().as_list()[1:]:
+        for s in x.get_shape().as_list()[1:]: # (5, 5, 5, 32)
             dim *= s
         x = tf.reshape(x, [-1, dim])
-        out = tf.matmul(x, weights['w5']) + weights['b5']
+        out = tf.matmul(x, weights['w5']) + weights['b5'] # 행렬간 곱셈
         return out
 
 

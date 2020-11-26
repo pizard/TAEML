@@ -124,6 +124,43 @@ if __name__=='__main__':
         stds[i+2,tdi] = np.std(temp_results[i+2])
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # Latex stlye reults 
     # 1. no std version
 #    dlabels = TRAIN_DATASET+['Uniform Averaging Ensemble', 'TAEML']
