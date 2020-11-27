@@ -26,7 +26,8 @@ DATASET_SIZE = {'awa2': int(37322*0.8), 'mnist': 70000, 'cub200_2011': 11788,
 
 TRAIN_DATASET = ['awa2', 'cifar100', 'omniglot', 'voc2012', 'caltech256']
 TEST_DATASET = ['mnist', 'cub200_2011', 'cifar10', 'caltech101', 'miniImagenet']
-VALIDATION_DATASET = ['awa2', 'cifar100', 'omniglot', 'caltech256']
+# VALIDATION_DATASET = ['awa2', 'cifar100', 'omniglot', 'caltech256']
+VALIDATION_DATASET = ['cifar100']
 
 
 # TRAIN_DATASET = ['omniglot']
