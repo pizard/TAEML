@@ -24,14 +24,14 @@ DATASET_SIZE = {'awa2': int(37322*0.8), 'mnist': 70000, 'cub200_2011': 11788,
         'cifar100': int(60000*0.8), 'cifar10': 60000, 'voc2012': 11540,
         'miniImagenet': int(60000*0.64)}
 
-# TRAIN_DATASET = ['awa2', 'cifar100', 'omniglot', 'voc2012', 'caltech256']
-# TEST_DATASET = ['mnist', 'cub200_2011', 'cifar10', 'caltech101', 'miniImagenet']
-# VALIDATION_DATASET = ['awa2', 'cifar100', 'omniglot', 'caltech256']
+TRAIN_DATASET = ['awa2', 'cifar100', 'omniglot', 'voc2012', 'caltech256']
+TEST_DATASET = ['mnist', 'cub200_2011', 'cifar10', 'caltech101', 'miniImagenet']
+VALIDATION_DATASET = ['awa2', 'cifar100', 'omniglot', 'caltech256']
 
 
-TRAIN_DATASET = ['omniglot']
-TEST_DATASET = ['mnist']
-VALIDATION_DATASET = ['omniglot']
+# TRAIN_DATASET = ['omniglot']
+# TEST_DATASET = ['mnist']
+# VALIDATION_DATASET = ['cifar100']
 
 class EpisodeGenerator(): 
     def __init__(self, data_dir, phase):
