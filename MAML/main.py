@@ -156,9 +156,9 @@ if __name__=='__main__':
                 validate(test_net, ep_test)
 
 
-
+            print(1)
             if i % args.save_step == 0 and i != 0:
-
+                print(2)
                 out_loc = os.path.join(args.model_dir, # models/
                         args.model_name, # mamlnet/
                         args.param_str) + '_{}'.format(i) # 5way_1shot_model.ckpt
