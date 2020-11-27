@@ -14,8 +14,8 @@ def parse_args():
     parser.add_argument('--qs', dest='qsize', default=15, type=int)
     parser.add_argument('--nw', dest='nway', default=5, type=int)
     parser.add_argument('--ks', dest='kshot', default=1, type=int)
-    parser.add_argument('--showi', dest='show_step', default=1, type=int)
-    parser.add_argument('--savei', dest='save_step', default=10, type=int)
+    parser.add_argument('--showi', dest='show_step', default=100, type=int)
+    parser.add_argument('--savei', dest='save_step', default=5000, type=int)
     parser.add_argument('--pr', dest='pretrained', default=False, type=bool)
     # parser.add_argument('--data', dest='dataset_dir', default='../miniImagenet')
     parser.add_argument('--data', dest='dataset_dir', default='../../data/npy')
@@ -156,14 +156,12 @@ if __name__=='__main__':
                 validate(test_net, ep_test)
 
 
-            print(1)
             if i % args.save_step == 0 and i != 0:
-                print(2)
                 out_loc = os.path.join(args.model_dir, # models/
                         args.model_name, # mamlnet/
                         args.param_str) + '_{}'.format(i) # 5way_1shot_model.ckpt
                 print ('saved at : {}'.format(out_loc))
-                os.makedirs(out_loc, exist_ok=True)
+                os.makedirs(os.path.join(args.model_dir, args.model_name), exist_ok=True)
                 saver.save(sess, out_loc)
     else: # if test only
         validate(test_net, ep_test)
